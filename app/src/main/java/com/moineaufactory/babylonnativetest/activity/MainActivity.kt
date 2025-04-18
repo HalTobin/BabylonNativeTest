@@ -1,4 +1,4 @@
-package com.moineaufactory.babylonnativetest
+package com.moineaufactory.babylonnativetest.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.moineaufactory.babylonnativetest.data.Scene
 import com.moineaufactory.babylonnativetest.ui.theme.BabylonNativeTestTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                                 name = "BabylonNative",
                                 modifier = Modifier.padding(innerPadding)
                             )
-                            Models.entries.forEach { model ->
+                            Scene.entries.forEach { model ->
                                 Button(
                                     modifier = Modifier.fillMaxWidth(0.7f),
                                     shape = RoundedCornerShape(8.dp),
@@ -50,6 +51,16 @@ class MainActivity : ComponentActivity() {
                                 ) {
                                     Text(model.name.uppercase())
                                 }
+                            }
+                            Button(
+                                modifier = Modifier.fillMaxWidth(0.7f),
+                                shape = RoundedCornerShape(8.dp),
+                                onClick = {
+                                    val intent = Intent(this@MainActivity, IndexActivity::class.java)
+                                    startActivity(intent)
+                                }
+                            ) {
+                                Text("MULTI-SCENE")
                             }
                         }
                     }
@@ -63,12 +74,6 @@ class MainActivity : ComponentActivity() {
         intent.putExtra("path", modelPath)
         startActivity(intent)
     }
-}
-
-enum class Models(val path: String) {
-    BOX("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF/Box.gltf"),
-    AVOCADO("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf"),
-    FLIGHT_HELMET("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/FlightHelmet/glTF/FlightHelmet.gltf")
 }
 
 @Composable

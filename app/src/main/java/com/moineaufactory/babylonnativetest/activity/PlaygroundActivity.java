@@ -1,4 +1,4 @@
-package com.moineaufactory.babylonnativetest;
+package com.moineaufactory.babylonnativetest.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
